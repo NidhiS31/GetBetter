@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification</title>
+    <link rel="stylesheet" type="text/css" href="../css/notification.css" />
+
+    <script defer src="./notification.js"></script>
+    <style>
+      .notification-page {
+        background: inherit;
+        color: #ffffff;
+      }
+      .notification-page .welcome-logo {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .notification-page .welcome-logo img {
+        width: 38px;
+        height: 40px;
+        animation: animateHeart 2s infinite;
+        margin-right: 10px;
+        display: none;
+      }
+
+      .notification-page .welcome-logo .title {
+        font-size: 1.2rem;
+        margin-block-start: 10px;
+
+        /* margin-right: 38px; */
+      }
+      .notification-page .welcome-logo .title span {
+        color: #ffffff;
+      }
+
+      .notification-page .main-content .main.hide {
+        display: none;
+      }
+      .notification-page .main-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 10px;
+        height: calc(100vh - 100px);
+      }
+      .notification-page .main-content > * {
+        width: 100%;
+      }
+
+      .notification-text {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: normal;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .notification-text.hide {
+        display: none;
+      }
+      .action-buttons {
+        padding: 10px;
+
+        margin-top: 10px;
+        border-top: 1px solid #fff;
+        display: flex;
+        justify-content: space-between;
+      }
+      .action-buttons.hide {
+        display: none;
+      }
+
+      .action-buttons button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        min-width: 100px;
+        border-radius: 4px;
+        border-width: 2px;
+        border-style: solid;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .action-buttons .skip {
+        color: #f18916;
+        background-color: #fff;
+        border-color: #f18916;
+        display: none;
+      }
+
+      .action-buttons .skip:hover,
+      .action-buttons .skip:active,
+      .action-buttons .skip:focus {
+        background: #f18916;
+        color: #fff;
+        font-weight: bold;
+        outline: none;
+      }
+      .action-buttons .dnd {
+        color: #dc3545;
+        background: #fff;
+        border-color: #dc3545;
+      }
+      .action-buttons .dnd:hover,
+      .action-buttons .dnd:active,
+      .action-buttons .dnd:focus {
+        background: #dc3545;
+        color: #fff;
+        font-weight: bold;
+        outline: none;
+      }
+
+      .action-buttons .gobreak {
+        font-size: 0.9rem;
+        min-width: 180px;
+        color: #a73a9c;
+        background: #fff;
+        border-color: #a73a9c;
+        padding: 10px 20px;
+        border-radius: 4px;
+        border-width: 2px;
+        border-style: solid;
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .gobreak:hover,
+      .gobreak:active,
+      .gobreak:focus {
+        background: #a73a9c;
+        color: #fff;
+        font-weight: bold;
+        outline: none;
+      }
+
+      .dnd-select {
+        min-width: 130px;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        color: #dc3545;
+        background: #fff;
+        border-color: #dc3545;
+        padding: 10px 20px;
+        border-radius: 4px;
+        border-width: 2px;
+        border-style: solid;
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .dnd-select:hover,
+      .dnd-select:active,
+      .dnd-select:focus {
+        background: #dc3545;
+        color: #fff;
+        font-weight: bold;
+        outline: none;
+      }
+      .notification-page i {
+        margin-right: 5px;
+      }
+      .time-slider {
+        position: absolute;
+        width: 100%;
+        /* position: relative; */
+        padding: 10px 0;
+        box-sizing: border-box;
+        /* background: var(--main-bg-color); */
+        height: calc(100% - 10vh);
+        margin-top: -10vh;
+        padding: 1.5rem;
+        text-align: center;
+      }
+
+      .time-slider.hide {
+        display: none;
+      }
+
+      .box-minmax {
+        margin-top: 10px;
+        width: calc(100%);
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+        z-index: -1;
+      }
+
+      .rs-range {
+        margin-top: 20px;
+        width: calc(100%);
+        -webkit-appearance: none;
+      }
+      .rs-range:focus {
+        outline: none;
+      }
+      .rs-range::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 2px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #fff;
+        border-radius: 0px;
+        border: 0px solid #010101;
+      }
+      .rs-range::-moz-range-track {
+        width: 100%;
+        height: 4px;
+        cursor: pointer;
+        box-shadow: none;
+        background: #fff;
+        border-radius: 0px;
+        border: 0px solid #010101;
+      }
+      .rs-range::-webkit-slider-thumb {
+        box-shadow: none;
+        border: 0px solid #fff;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -10px;
+        transition: all 0.25s ease-in-out;
+      }
+      .rs-range::-webkit-slider-thumb:hover {
+        transform: scale(1.6);
+      }
+      .rs-range::-moz-range-thumb {
+        box-shadow: none;
+        border: 0px solid #fff;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -10px;
+      }
+      .rs-range::-moz-range-thumb:hover {
+        transform: scale(1.6);
+      }
+      .rs-range::-moz-focus-outer {
+        border: 0;
+      }
+      .rs-label {
+        position: relative;
+        transform-origin: center center;
+        display: block;
+        width: 50px;
+        height: 50px;
+        background: transparent;
+        border-radius: 50%;
+        text-align: center;
+        /* padding-top: 10px; */
+        box-sizing: border-box;
+        border: 2px solid #fff;
+        margin-top: 0px;
+        transform: translateX(calc(-50% + 7px));
+        color: #fff;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 50px;
+        font-size: 15px;
+      }
+
+      a.close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+      a.close i {
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .time-slider .title {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .time-slider .subtext {
+        margin-bottom: 15px;
+      }
+      .fixed-top {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 10;
+      }
+      .progress-container {
+        width: 100%;
+        background-color: transparent;
+        height: 5px;
+        display: block;
+      }
+      .progress-bar {
+        background-color: #dc3545;
+        width: 0%;
+        display: block;
+        height: inherit;
+      }
+
+      .ffffff.notification-page {
+        background: #fff;
+        color: #000000;
+      }
+
+      .ffffff.notification-page .action-buttons {
+        border-color: #000000;
+      }
+
+      .ffffff.notification-page {
+        color: #000000;
+      }
+      .ffffff.notification-page .box-minmax {
+        color: #000000;
+      }
+
+      .ffffff.notification-page .rs-label {
+        border: 2px solid #000000;
+        color: #000000;
+      }
+      .ffffff.notification-page .welcome-logo .title span {
+        color: #000000;
+      }
+      .ffffff.notification-page .time-slider {
+        background: #fff;
+      }
+      .ffffff .breaks > :nth-child(2) > a:hover {
+        color: #ffffff;
+      }
+
+      .ffffff.notification-page .rs-range::-moz-range-thumb {
+        background: #000;
+      }
+      .ffffff.notification-page .rs-range::-webkit-slider-thumb {
+        background: #000;
+      }
+      .ffffff.notification-page .rs-range::-moz-range-track {
+        background: #000;
+      }
+      .ffffff.notification-page .rs-range::-webkit-slider-runnable-track {
+        background: #000;
+      }
+      .ffffff .breaks > :nth-child(2) > a:hover img,
+      .ffffff .breaks > :nth-child(2) > a:hover {
+        color: #000000;
+      }
+
+      .ffffff .breaks > :nth-child(2) .tiptext,
+      .ffffff .breaks > :nth-child(2) .tiptext {
+        color: #000000;
+        background-color: #ffffff;
+        border: 1px solid #000000;
+      }
+
+      .ffffff .breaks > :nth-child(2) > a img {
+        filter: hue-rotate(288deg) brightness(102%) contrast(102%);
+      }
+
+      .ffffff .breaks > :nth-child(2) > a:hover img {
+        filter: hue-rotate(359deg) brightness(101%) contrast(103%);
+      }
+    </style>
+  </head>
+  <body class="notification-page">
+    <div class="progress-container fixed-top">
+      <span class="progress-bar"></span>
+    </div>
+    <header>
+      <div class="welcome-logo">
+        <div class="title">get<span>Better</span></div>
+      </div>
+    </header>
+
+    <section class="main-content">
+      <div class="notification-text"></div>
+
+      <div class="action-buttons">
+        <button type="button" class="skip">
+          <i class="fas fa-forward"></i> Skip
+        </button>
+        <button class="gobreak">
+          <i class="far fa-thumbs-up"></i>Try this activity!
+        </button>
+        <button type="button" class="dnd">
+          <i class="far fa-clock"></i>DND
+        </button>
+      </div>
+
+      <div class="time-slider hide">
+        <a class="close" title="close"><i class="fas fa-times"></i></a>
+        <div class="title">Do not Disturb!</div>
+        <div class="subtext">For how long you don't want us to disturb?</div>
+        <div class="range-slider">
+          <span id="rs-bullet" class="rs-label">00:30</span>
+          <input
+            id="rs-range-line"
+            class="rs-range"
+            type="range"
+            value="30"
+            min="30"
+            step="30"
+            max="720"
+          />
+        </div>
+
+        <div class="box-minmax">
+          <span>30 min</span><span>6 hrs</span><span>12 hrs</span>
+        </div>
+        <button class="dnd-select"><i class="fas fa-check"></i>Select</button>
+      </div>
+    </section>
+  </body>
+</html>

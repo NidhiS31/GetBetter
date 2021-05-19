@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>How's your mood?</title>
+    <link rel="stylesheet" type="text/css" href="../css/moods.css" />
+    
+    <script defer src="./moods.js"></script>
+  </head>
+  <body class="moods-page">
+    <a class="close" title="close"><i class="fas fa-times"></i></a>
+    <header>
+      <div class="welcome-logo">
+        <img src="../images/icon.png" class="responsive" />
+        <div class="title">get<span>Better</span></div>
+      </div>
+    </header>
+    <section class="main-content">
+      <div id="question" class="title-question">How's your mood right now?</div>
+      <ul class="mood-container">
+        <li class="mood" data-mood="happy">
+          <img src="../images/smiling_face_with_sunglasses.gif" alt="happy" />
+          <div class="text">Yay!!</div>
+        </li>
+        <li class="mood" data-mood="angry">
+          <img src="../images/face_with_symbols_on_mouth.gif" alt="angry" />
+          <div class="text">Angry</div>
+        </li>
+        <li class="mood" data-mood="unamused">
+          <img src="../images/unamused_face.gif" alt="unamused" />
+          <div class="text">Meh!</div>
+        </li>
+        <li class="mood" data-mood="sad">
+          <img src="../images/pleading_face.gif" alt="gloomy" />
+          <div class="text">Gloomy</div>
+        </li>
+        <li class="mood"  data-mood="stressed">
+          <img src="../images/face_screaming_in_fear.gif" alt="anxious" />
+          <div class="text">Stressed</div>
+        </li>
+        <li class="mood" data-mood="sick">
+          <img src="../images/face_with_thermometer.gif" alt="sick" />
+          <div class="text">Not well!</div>
+        </li>
+      </ul>
+      
+      </div>
+    </section>
+    <section class="recorded-content">
+      <div class="recorded">
+        Your mood has been recorded. 
+        <br />
+        <p class="next-break"><span > You next break is <span class="timeleft"></span>.</span> </p>
+        <p>This window will close automatically in ... <span class="time">5</span> sec</p>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,114 @@
+@import url(./index.css);
+body.moods-page {
+  background: #e5e5e5;
+  position: relative;
+}
+a.close {
+  position: absolute;
+  right: 12px;
+  top: 19px;
+  z-index: 10;
+}
+a.close i {
+  cursor: pointer;
+  font-size: 24px;
+  color: #292929;
+}
+.moods-page .welcome-logo {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.moods-page .welcome-logo img {
+  width: 38px;
+  height: 40px;
+  animation: animateHeart 2s infinite;
+  margin-right: 10px;
+}
+
+.moods-page .welcome-logo .title {
+  font-size: 2.4rem;
+  margin-block-start: 10px;
+  margin-right: 38px;
+  color: #252525;
+}
+.moods-page .main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+}
+
+.mood-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  margin-top: 40px;
+  list-style: none;
+  align-items: center;
+  width: clamp(350px, 100vw, 800px);
+  /* max-width: 600px; */
+}
+.title-question {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #a73a9c;
+  font-weight: normal;
+  align-items: center;
+}
+.mood {
+  padding: 10px 1.5%;
+}
+.text {
+  color: #252525;
+}
+.mood:hover {
+  cursor: pointer;
+}
+.mood:hover .text {
+  color: #a73a9c;
+}
+
+.mood.selected {
+  background: #dbfdfb;
+}
+.mood.selected:hover {
+  background: #dbfdfb;
+  cursor: pointer;
+}
+.mood:hover img {
+  transform: scale(1.5);
+}
+.mood.selected .text {
+  color: #23654d;
+}
+.mood img {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  transition: all 0.2s ease-in;
+}
+
+.mood .text {
+  text-align: center;
+}
+.recorded-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 80vh;
+  display: none;
+}
+.recorded {
+  font-size: 1rem;
+  color: #252525;
+}
+
+.timeleft,
+.time {
+  color: #a73a9c;
+}
